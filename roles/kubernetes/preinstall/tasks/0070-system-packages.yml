@@ -33,9 +33,10 @@
         mode: 0644
 
 - name: Update package management cache (APT)
-  apt:
-    update_cache: yes
-    cache_valid_time: 3600
+  # apt:
+  #   update_cache: yes
+  #   # cache_valid_time: 3600
+  command: apt-get -o Acquire::Check-Valid-Until=false -o Acquire::Check-Date=false update
   when: ansible_os_family == "Debian"
   tags:
     - bootstrap-os
